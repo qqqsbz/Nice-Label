@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  AroundPlace
+
+  Created by wxb on 15-08-31. email: 932170917@qq.com
+  Copyright (c) 2014年 wxb. All rights reserved.
+*/
+
+"Cancle" = "取消";
+"AroundPlaces" = "搜索附近位置";
+"AroundPlacesLoading" = "正在搜索附近的位置";
+"NoMoreAroundPlaces" = "附近没有更多位置了";
+"AroundPlacesError" = "获取附近位置失败！！ 点击重试";
+"AroundPlacesErrorReLoad" = "%@, 点我重试";
