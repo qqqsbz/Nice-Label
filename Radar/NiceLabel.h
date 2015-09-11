@@ -28,4 +28,5 @@ typedef enum {
 @property (strong, nonatomic) UIImage  *image;
 @property (weak,   nonatomic) id<NiceLableDelegate> delegate;
 
+- (instancetype)initWithFrame:(CGRect)frame image:(UIImage *)image;
 @end
