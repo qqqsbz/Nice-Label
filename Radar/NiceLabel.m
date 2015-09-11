@@ -95,7 +95,8 @@ static NSString *kGroupAnimation = @"GroupAnimation";
 - (void)longPressAction:(UILongPressGestureRecognizer *)longPress
 {
     if ([self.delegate respondsToSelector:@selector(didLongPressWithNiceLabel:)]) {
-        [self.delegate didLongPressWithNiceLabel:self];
+        NiceLabel *niceLabel = (NiceLabel *)longPress.view;
+        [self.delegate didLongPressWithNiceLabel:niceLabel];
     }
 }
 
@@ -105,11 +106,10 @@ static NSString *kGroupAnimation = @"GroupAnimation";
 {
     _text = text;
     [textButton setTitle:_text forState:UIControlStateNormal];
-    
     CGFloat screenWidth = CGRectGetWidth(self.superview.bounds);
-    if ((CGRectGetMaxX(self.frame) - Distance / 2) > screenWidth) {
+    if (CGRectGetMaxX(self.frame) > screenWidth) {
         
-        self.frame = CGRectMake(screenWidth - CGRectGetWidth(self.bounds) - (screenWidth - self.frame.origin.x) + ImageViewWidth / 2, self.frame.origin.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+        self.frame = CGRectMake(self.frame.origin.x - CGRectGetWidth(self.bounds) + Distance , self.frame.origin.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
         
         textButton.frame = CGRectMake(0, textButton.frame.origin.y, CGRectGetWidth(textButton.frame), CGRectGetHeight(textButton.frame));
         imageView.frame  = CGRectMake(CGRectGetWidth(textButton.frame) + Distance, imageView.frame.origin.y, CGRectGetWidth(imageView.frame), CGRectGetHeight(imageView.frame));
@@ -258,5 +258,6 @@ static NSString *kGroupAnimation = @"GroupAnimation";
         [shapeLayer removeAnimationForKey:kGroupAnimation];
         [shapeLayer removeFromSuperlayer];
     }
+    [shapeLayers removeAllObjects];
 }
 @end

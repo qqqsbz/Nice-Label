@@ -14,7 +14,6 @@
 @interface NiceViewController ()<UIAlertViewDelegate,NiceLableDelegate>
 {
     UIAlertView     *alertView;
-    NiceLabel       *niceLabel;
     NiceLabel       *currentNiceLabel;
     CAShapeLayer    *tag;
    
@@ -31,10 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    CGRect frame = self.view.frame;
-    frame.origin.x -= 64;
-    self.view.frame = frame;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectPlace:) name:@"kAROUNDPLACE" object:nil];
     
@@ -61,13 +56,13 @@
         
         CGSize size = [name sizeWithFont:[UIFont systemFontOfSize:13.f] maxSize:CGSizeMake(100, 30)];
         
-        niceLabel = [[NiceLabel alloc] initWithFrame:CGRectMake(currentPoint.x, currentPoint.y, size.width + 60, 30)];
-        niceLabel.text      = name;
-        niceLabel.textFont  = [UIFont systemFontOfSize:13.f];
-        niceLabel.textColor = [UIColor whiteColor];
-        niceLabel.delegate  = self;
-        
+        NiceLabel *niceLabel = [[NiceLabel alloc] initWithFrame:CGRectMake(currentPoint.x, currentPoint.y, size.width + 60, 30)];
+        niceLabel.textFont   = [UIFont systemFontOfSize:13.f];
+        niceLabel.textColor  = [UIColor whiteColor];
+        niceLabel.delegate   = self;
+        //此处应该把标签添加到view后再进行赋值
         [self.view addSubview:niceLabel];
+        niceLabel.text       = name;
         [self hideMenu];
     }
 }
@@ -79,7 +74,7 @@
         alertView = [[UIAlertView alloc] initWithTitle:@"您要删除当前标签吗" message:@"确认删除" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     }
     [alertView show];
-    currentNiceLabel = niceLabel;
+    currentNiceLabel = niceLable;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
