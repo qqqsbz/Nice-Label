@@ -32,6 +32,16 @@ static NSString *kGroupAnimation = @"GroupAnimation";
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame image:(UIImage *)image
+{
+    if (self = [self initWithFrame:frame]) {
+        self.image = image;
+        [self initialization];
+    }
+    
+    return self;
+}
+
 - (void)initialization
 {
     shapeLayers = [NSMutableArray array];
@@ -49,6 +59,7 @@ static NSString *kGroupAnimation = @"GroupAnimation";
     textButton.titleLabel.textAlignment   = NSTextAlignmentCenter;
     [self addSubview:textButton];
     state = NiceLabelStateRight;
+    
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self addGestureRecognizer:tapGesture];
@@ -117,6 +128,12 @@ static NSString *kGroupAnimation = @"GroupAnimation";
         state = NiceLabelStateLeft;
     }
     
+    if (self.frame.origin.y + CGRectGetHeight(self.bounds) > CGRectGetMaxY(self.superview.frame)) {
+        CGRect frame   = self.frame;
+        frame.origin.y = CGRectGetMaxY(self.superview.frame) - CGRectGetHeight(self.bounds) - Distance;
+        self.frame     = frame;
+    }
+    
     [self addAnimationDuration:0.7f beginTime:.5f];
 }
 
@@ -150,7 +167,7 @@ static NSString *kGroupAnimation = @"GroupAnimation";
         CGFloat Dvalue = CGRectGetMaxX(self.frame) - CGRectGetWidth(self.bounds);
         if (Dvalue >= CGRectGetWidth(self.bounds) - ImageViewWidth) {
             
-            [self stopAnimation];
+            [self removeAnimation];
             
             CGFloat moveX   = Dvalue - CGRectGetWidth(self.bounds);
             CGRect frame    = self.frame;
@@ -170,7 +187,7 @@ static NSString *kGroupAnimation = @"GroupAnimation";
         
         if (Dvalue <= screenWidth) {
             
-            [self stopAnimation];
+            [self removeAnimation];
             
             CGRect frame    = self.frame;
             frame.origin.x  = CGRectGetMaxX(self.frame) - ImageViewWidth;
@@ -190,11 +207,21 @@ static NSString *kGroupAnimation = @"GroupAnimation";
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if ([[anim valueForKey:@"TransformScale"] isEqualToString:@"scaleAnimation"]) {
+        //清除上次的shapeLayer 防止内存泄露
+        for (CAShapeLayer *shapeLayer in shapeLayers) {
+            [shapeLayer removeAnimationForKey:kGroupAnimation];
+            [shapeLayer removeFromSuperlayer];
+        }
+        [shapeLayers removeAllObjects];
+        
         isAperture = NO;
         [self addApertureAnimationDuration:.6f beginTime:0.5f];
         [self addApertureAnimationDuration:.6f beginTime:1.f];
+        
     } else if ([[anim valueForKey:@"animation"] isEqualToString:@"animation"]) {
+        
         if (!isAperture) {
+            [imageView.layer removeAnimationForKey:kAnimatiomName];
             [self addAnimationDuration:0.7f beginTime:0.5f];
             isAperture = YES;
         }
@@ -251,7 +278,7 @@ static NSString *kGroupAnimation = @"GroupAnimation";
     
 }
 //停止动画 并将光晕移除
-- (void)stopAnimation
+- (void)removeAnimation
 {
     [imageView.layer removeAnimationForKey:kAnimatiomName];
     for (CAShapeLayer *shapeLayer in shapeLayers) {

@@ -37,6 +37,7 @@
 		DC58AF061B9EBD42003816FF /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC58AF051B9EBD42003816FF /* MAMapKit.framework */; };
 		DC58AF081B9EBD58003816FF /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC58AF071B9EBD58003816FF /* AMapSearchKit.framework */; };
 		DC58AF0A1B9EBD89003816FF /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC58AF091B9EBD89003816FF /* AMap.bundle */; };
+		DCCC77F91BD8CF1600C20403 /* screenshots.gif in Resources */ = {isa = PBXBuildFile; fileRef = DCCC77F81BD8CF1600C20403 /* screenshots.gif */; settings = {ASSET_TAGS = (); }; };
 		DCDE9DBA1B9ECA3D007FB721 /* NSString+String.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDE9DB91B9ECA3D007FB721 /* NSString+String.m */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		DC58AF051B9EBD42003816FF /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		DC58AF071B9EBD58003816FF /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		DC58AF091B9EBD89003816FF /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		DCCC77F81BD8CF1600C20403 /* screenshots.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = screenshots.gif; sourceTree = "<group>"; };
 		DCDE9DB81B9ECA3D007FB721 /* NSString+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+String.h"; sourceTree = "<group>"; };
 		DCDE9DB91B9ECA3D007FB721 /* NSString+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+String.m"; sourceTree = "<group>"; };
 		EB9FCF8928046669E1B2E8EA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		DC4FF5711B9D7B89003FB417 /* Radar */ = {
 			isa = PBXGroup;
 			children = (
+				DCCC77F81BD8CF1600C20403 /* screenshots.gif */,
 				DC58AF001B9EBCEF003816FF /* Localizable.strings */,
 				DC58AED61B9E8FE9003816FF /* Kits */,
 				DC4FF59B1B9E718D003FB417 /* location.png */,
@@ -331,6 +334,7 @@
 				DC58AF011B9EBCEF003816FF /* Localizable.strings in Resources */,
 				DC4FF59C1B9E718D003FB417 /* location.png in Resources */,
 				DC58AEDE1B9E9092003816FF /* Images.xcassets in Resources */,
+				DCCC77F91BD8CF1600C20403 /* screenshots.gif in Resources */,
 				DC58AF0A1B9EBD89003816FF /* AMap.bundle in Resources */,
 				DC4FF57E1B9D7B89003FB417 /* Main.storyboard in Resources */,
 				DC4FF5831B9D7B89003FB417 /* LaunchScreen.xib in Resources */,
